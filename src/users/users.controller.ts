@@ -3,7 +3,7 @@ import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ChangeRoleDto } from './dto/change-role.dto';
-import { ValidationPipe } from 'src/pipes/validation.pipes';
+import { ValidationPipe } from 'src/common/pipes/validation.pipes';
 import { ResponseCreateUserDto } from './dto/response-create-user.dto';
 
 @ApiTags('Пользователи')

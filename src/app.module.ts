@@ -4,7 +4,7 @@ import { ProductsModule } from './products/products.module';
 import { PrismaService } from './prisma.service';
 import { CategoryModule } from './category/category.module';
 import { AuthModule } from './auth/auth.module';
-import { SoftDeleteMiddleware } from './middleware/softDelete.middleware';
+import { SoftDeleteMiddleware } from './common/middleware/softDelete.middleware';
 //@nestjs/config
 
 @Module({
