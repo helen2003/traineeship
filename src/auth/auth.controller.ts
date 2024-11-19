@@ -7,19 +7,17 @@ import { AuthUserDto } from './dto/auth-user.dto';
 @ApiTags('Авторизация')
 @Controller('auth')
 export class AuthController {
+  constructor(private authService: AuthService) {}
 
-    constructor(private authService: AuthService) {}
+  @ApiOperation({ summary: 'Идентификация и аутентификация' })
+  @Post('/login')
+  login(@Body() authDto: AuthUserDto): Promise<object> {
+    return this.authService.login(authDto);
+  }
 
-    @ApiOperation({summary: 'Идентификация и аутентификация'})
-    @Post('/login')
-    login(@Body() authDto: AuthUserDto) {
-        return this.authService.login(authDto)
-    }
-
-    @ApiOperation({summary: 'Регистрация'})
-    @Post('/registration')
-    registration(@Body() userDto: CreateUserDto) {
-        return this.authService.registration(userDto)
-    }
-
+  @ApiOperation({ summary: 'Регистрация' })
+  @Post('/registration')
+  registration(@Body() userDto: CreateUserDto): Promise<object> {
+    return this.authService.registration(userDto);
+  }
 }

@@ -1,18 +1,13 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { ProductsController } from './products.controller';
-import { PrismaService } from 'src/prisma.service';
-import { SoftDeleteMiddleware } from 'src/common/middleware/softDelete.middleware';
+import { PrismaService } from 'src/common/prisma/prisma.service';
+import { ProductsResolver } from './product.resolver';
+import { CategoryModule } from 'src/category/category.module';
 
 @Module({
   controllers: [ProductsController],
-  providers: [ProductsService, PrismaService],
+  providers: [ProductsService, PrismaService, ProductsResolver],
+  imports: [CategoryModule]
 })
-// export class ProductsModule {}
-export class ProductsModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(SoftDeleteMiddleware)
-      .forRoutes('products');
-  }
-}
+export class ProductsModule {}

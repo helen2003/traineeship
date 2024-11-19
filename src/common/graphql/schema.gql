@@ -1,0 +1,50 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Products {
+  id: Int!
+  name: String!
+  description: String
+  created_at: DateTime
+  update_at: DateTime
+  delete_at: DateTime
+  categoryId: Int!
+  authorId: Int!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  products: [Products]!
+  product(id: Int!): Products!
+  productsFilter(authorId: Int, categoryId: Int): [Products!]!
+}
+
+type Mutation {
+  createProduct(createProductData: CreateProductInput!): Products!
+  updateProduct(updateProductData: UpdateProductInput!): Products!
+  deleteProduct(deleteProductData: DeleteProductInput!): Products!
+}
+
+input CreateProductInput {
+  name: String!
+  description: String!
+  authorId: Int!
+  categoryId: Int!
+}
+
+input UpdateProductInput {
+  id: Int!
+  name: String
+  description: String
+  authorId: Int
+  categoryId: Int
+}
+
+input DeleteProductInput {
+  id: Int!
+}

@@ -1,5 +1,7 @@
 generator client {
   provider = "prisma-client-js"
+  // previewFeatures = ["strictUndefinedChecks"]
+  previewFeatures = ["omitApi"]
 }
 
 datasource db {
@@ -7,36 +9,36 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model user {
-  idUser    Int       @id @default(autoincrement())
+model User {
+  id        Int       @id @default(autoincrement())
   email     String    @unique
   password  String
   firstName String?
   name      String?
-  role      role      @default(USER)
-  products  product[]
+  role      RoleEnum  @default(USER)
+  products  Product[]
 }
 
-model product {
-  idProduct   Int       @id @default(autoincrement())
-  nameProduct String
+model Product {
+  id          Int       @id @default(autoincrement())
+  name        String
   description String?
-  createdAt   DateTime  @default(now())
-  updateAt    DateTime?
-  deleteAt    DateTime?
-  author      user?     @relation(fields: [authorId], references: [idUser])
+  created_at  DateTime  @default(now())
+  update_at   DateTime?
+  delete_at   DateTime?
+  author      User?     @relation(fields: [authorId], references: [id])
   authorId    Int?
-  category    category? @relation(fields: [categoryId], references: [idCategory])
+  category    Category? @relation(fields: [categoryId], references: [id])
   categoryId  Int?
 }
 
-model category {
-  idCategory   Int       @id @default(autoincrement())
-  nameCategory String
-  products     product[]
+model Category {
+  id       Int       @id @default(autoincrement())
+  name     String
+  products Product[]
 }
 
-enum role {
+enum RoleEnum {
   USER
   SELLER
   ADMIN
