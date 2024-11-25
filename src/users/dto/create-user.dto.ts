@@ -13,7 +13,4 @@ export class CreateUserDto {
 
   @ApiProperty({ example: 'Иванов', description: 'Фамилия' })
   readonly firstName: string;
-
-  @ApiProperty({ example: 'Иван', description: 'Имя' })
-  readonly name: string;
 }

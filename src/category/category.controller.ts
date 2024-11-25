@@ -10,7 +10,7 @@ import {
 import { JwtAuthGuard } from 'src/common/guards/jwt-auth.guard';
 import { Roles } from 'src/common/decorators/roles.decorator';
 import { RolesGuard } from 'src/common/guards/roles.guard';
-import { CategoryEntity } from './entities/categotyCreateEntity.entity';
+import { CategoryEntity } from './dto/entities/categotyCreateEntity.entity';
 import { Category } from '@prisma/client';
 
 @Controller('category')

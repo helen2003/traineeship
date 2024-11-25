@@ -15,10 +15,12 @@ export class ProductsResolver {
   constructor(private productsService: ProductsService, private categoryService: CategoryService) {}
 
 
-  // @Query(() => [ResultUnion])
-  // search(): Promise<Array<typeof ResultUnion>> {
-  //   return [this.productsService.findAllProducts(), this.categoryService.findAllCategory()];
-  // }
+  @Query(() => [ResultUnion])
+  async search(): Promise<Array<typeof ResultUnion>> {
+    const product = await this.productsService.findAllProducts();;
+    const categoties = await this.categoryService.findAllCategory()
+    return [...product, ...categoties];
+  }
 
   @Query(() => [Products], { name: 'products', nullable: 'items' })
   getProducts(): Promise<Products[]> {

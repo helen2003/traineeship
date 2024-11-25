@@ -2,6 +2,13 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Users {
+  id: Int!
+  firstName: String!
+  name: String!
+  role: String!
+}
+
 type Products {
   id: Int!
   name: String!
@@ -18,10 +25,31 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Category {
+  id: Int!
+  name: String!
+}
+
 type Query {
+  UsersByRoles(role: RolesEnum!): Users!
+  search: [ResultUnion!]!
   products: [Products]!
   product(id: Int!): Products!
   productsFilter(authorId: Int, categoryId: Int): [Products!]!
+  category(name: CategoryEnum!): Category!
+}
+
+enum RolesEnum {
+  USER
+  SELLER
+  ADMIN
+}
+
+union ResultUnion = Category | Products
+
+enum CategoryEnum {
+  BOOK
+  OTHER
 }
 
 type Mutation {

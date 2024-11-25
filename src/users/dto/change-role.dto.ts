@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { RoleEnum } from '@prisma/client';
 import { IsNumber, IsString } from 'class-validator';
 
 export class ChangeRoleDto {
@@ -12,5 +13,5 @@ export class ChangeRoleDto {
     description: 'Роль пользователя',
   })
   @IsString({ message: 'Должно быть строкой' })
-  readonly role: any;
+  readonly role: RoleEnum;
 }

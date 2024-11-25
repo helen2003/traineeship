@@ -3,6 +3,15 @@ import { Category } from "src/category/model/category.model";
 import { Products } from "src/products/model/product.model";
 
 export const ResultUnion = createUnionType({
-    name: 'CategotyProductUnion',
+    name: 'ResultUnion',
     types: () => [Category, Products] as const,
-  });
+    resolveType: value => {
+      if ("name" in value) {
+        return Category;
+      }
+      if ("description" in value) {
+        return Products;
+      }
+      return undefined;
+    },
+  }); 
